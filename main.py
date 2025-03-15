@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 
 app = Flask(__name__)
 
+load_dotenv()
 key = os.getenv("key")
 
 
@@ -24,10 +25,10 @@ def fetch_data(symbol, timeframe):
     if "data" not in data or len(data["data"]) < 2:
         return None
 
-    change = data["data"][-1]["close"] - data["data"][0]["open"]
+    change = data["data"][0]["close"] - data["data"][1]["close"]
     stock_data = {
         "open": data["data"][0]["open"],
-        "close": data["data"][-1]["close"],
+        "close": data["data"][0]["close"],
         "price_change": round(change, 2),
         "percent_change": f"{round((change / data['data'][0]['open']) * 100, 2)}%"
     }
