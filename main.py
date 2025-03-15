@@ -1,9 +1,11 @@
 from flask import Flask, render_template, request
 import requests
+import os
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 
-key = "adaab67a74ebbb7a449d6d5dd87142c7"
+key = os.getenv("key")
 
 
 def fetch_data(symbol, timeframe):
